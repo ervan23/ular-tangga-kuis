@@ -1,6 +1,10 @@
 # ular-tangga-kuis (Snake & Ladder)
 Mini game build with HTML5, CSS3 and Javascript
 
+<center>
+  <img src="https://1.bp.blogspot.com/-b_VVitynxDw/XVjWVcFDImI/AAAAAAAAEBE/NknY2S9CQgEWLzuKFdWLmsURKxAy1FBUQCLcBGAs/s1600/Screen%2BShot%2B2019-08-18%2Bat%2B11.37.38.png" />
+</center>
+
 ## How to run
 Just open ```index.html``` via web browser.
 
