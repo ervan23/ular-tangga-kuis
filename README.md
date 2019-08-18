@@ -9,6 +9,7 @@ Mini game build with HTML5, CSS3 and Javascript
 Just open ```index.html``` via web browser.
 
 ## Credit
+- [Base Game HTML](https://codepen.io/alvaromontoro/pen/ejzJBJ)
 - [Digital Font](https://www.1001fonts.com/digital-fonts.html)
 - Icon by [Nikita Golubev](https://www.flaticon.com/authors/nikita-golubev), downloaded from [FlatIcon](https://www.flaticon.com/)
 - [Rolling Dice CSS](https://codepen.io/tameraydin/pen/CADvB)
