@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./assets/styles/style.css">
+        <link rel="stylesheet" href="./assets/styles/dice.css">
+        <link rel="stylesheet" href="./assets/styles/modal.css">
+        <title>UGALO</title>
+        <script>
+            window.console = window.console || function(t) {};
+        </script>
+        <script>
+            if (document.location.search.match(/type=embed/gi)) {
+                window.parent.postMessage("resize", "*");
+            }
+        </script>
+    </head>
+    <body translate="no">
+        
+        <!-- <div id="intro">
+            <div>
+                <h1></h1>
+                <p class="from"> <a href="https://en.wikipedia.org/wiki/Snakes_and_Ladders" target="_blank">Wikipedia:</a></p>
+                <p class="desc"></p>
+                <p class="credit"> </p>
+                <p class="start-button">
+                <label class="start" for="cb0"> </label>
+                </p>
+            </div>
+        </div> -->
+
+        <div id="board">
+        </div>
+
+        <div class="player-wrapper">
+            <div class="player-list">
+            </div>
+            <button type="button" class="button add-player yellow">
+                Tambah Pemain
+            </button>
+            <button type="button" class="button start-game lightGreen">
+                Mulai
+            </button>
+            <button type="button" class="button reset-game amber">
+                Reset
+            </button>
+            <button data-action="modal" data-target="#peraturan-modal" type="button" class="button lightBlue">
+                Peraturan
+            </button>
+            <button type="button" id="random-dice" class="button blueGrey" style="color: white;">
+                Roll Dadu
+            </button>
+
+
+            <div class="dice-wrapper">
+
+                <div id="background"></div>
+                <div id="wrapper">
+                    <input id="secondroll" name="roll" type="checkbox">
+                    <input id="roll" name="roll" type="checkbox">
+                    <!-- <label for="roll">Roll it!</label>
+                    <label for="secondroll"><span>Stop!</span></label> -->
+                    <div id="platform">
+                        <div id="dice">
+                        <div class="side front">
+                            <div class="dot center"></div>
+                        </div>
+                        <div class="side front inner"></div>
+                        <div class="side top">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                        </div>
+                        <div class="side top inner"></div>
+                        <div class="side right">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot center"></div>
+                            <div class="dot dbottom dright"></div>
+                        </div>
+                        <div class="side right inner"></div>
+                        <div class="side left">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                        </div>
+                        <div class="side left inner"></div>
+                        <div class="side bottom">
+                            <div class="dot center"></div>
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                        </div>
+                        <div class="side bottom inner"></div>
+                        <div class="side back">
+                            <div class="dot dtop dleft"></div>
+                            <div class="dot dtop dright"></div>
+                            <div class="dot dbottom dleft"></div>
+                            <div class="dot dbottom dright"></div>
+                            <div class="dot center dleft"></div>
+                            <div class="dot center dright"></div>
+                        </div>
+                        <div class="side back inner"></div>
+                        <div class="side cover x"></div>
+                        <div class="side cover y"></div>
+                        <div class="side cover z"></div>
+                        </div>
+                    </div><!-- .platform -->
+                </div><!--.wrapper -->
+
+
+                <p id="dice-result">0</p>
+            </div>
+        </div>
+
+        <div id="finish">
+            <div></div>
+        </div>
+        
+        <div id="peraturan-modal" class="modal-window">
+            <span>
+                <a data-action="close" title="Close" class="modal-close">Tutup</a>
+                <h1>Peraturan</h1>
+                <ol>
+                    <li>Permainan dimainkan oleh 2 orang atau lebih.</li>
+                    <!-- <li>Permain yang mendapatkan dadu 12 dapat mengeluarkan pion dan dilanjutkan melempar dadu kembali.</li> -->
+                    <li>Setiap pemain akan mendapatkan 1 soal ketika menempati tiap kotak.</li>
+                    <li>1 kotak terdapat 3 soal yang berbeda.</li>
+                    <li>Kotak berjumlah 50.</li>
+                    <li>Waktu untuk menyelesaikan soal yaitu 5 menit.</li>
+                    <li>Jika pemain dapat menyelesaikan soal, pemain tersebut berhak mendapat 5 point dan jika pemain tidak dapat menyelesaikan soal, maka pemain tidak mendapat point.</li>
+                    <li>Permainan dikatakan selesai jika salah satu pemain telah menyelesaikan 50 kotak.</li>
+                </ol>
+            </span>
+        </div>
+
+        <div id="question-modal" class="modal-window">
+            <span>
+                <a data-action="close" title="Close" class="modal-close">Tutup</a>
+            </span>
+            <div class="question">
+
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="./assets/js/app.js"></script>
+        <!-- https://www.1001fonts.com/digital-fonts.html -->
+        <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/nikita-golubev" title="Nikita Golubev">Nikita Golubev</a> from <a href="https://www.flaticon.com/"             title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/"             title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->
+        <!-- https://codepen.io/tameraydin/pen/CADvB -->
+        <!-- http://soundbible.com/181-Roll-Dice-2.html -->
+        <!-- https://www.genengnews.com/wp-content/uploads/2018/10/Feb1_2018_GEtty_489973431_SnakesAndLaddrs7098137751.jpg -->
+    </body>
+</html>

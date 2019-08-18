@@ -1,0 +1,453 @@
+@charset "UTF-8";
+body {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font: 500 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+@font-face {
+  font-family: digital7;
+  src: url(../font/digital-7/digital-7.ttf);
+}
+/***** Player */
+.player-wrapper {
+    height: auto;
+    width: 225px;
+    float: right;
+    border: 1px solid #212121;
+    padding: 5px;
+}
+
+.player-list {
+    width: 97%;
+    float: left;
+}
+
+.player {
+    width: 99%;
+    height: 30px;
+    padding: 5px;
+    margin-bottom: 7px;
+    border-radius: 3px;
+}
+
+.player > p {
+    margin: 0px;
+    padding-top: 6px; 
+}
+
+.player.active {
+  background-image: url(../img/turn_dice.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position-x: 190px;
+}
+
+span.point {
+    margin-left: 15px;
+}
+
+/**** Dice */
+#dice-result {
+  padding-top: 100px;
+  text-align: center;
+  font-family: digital7;
+  font-size: 80px;
+}
+.dice-wrapper {
+  height: 180px;
+  width: 212px;
+  /* float: right; */
+  border: 1px solid #212121;
+  padding: 5px;
+}
+
+/**** Player color */ 
+.red, #board .ficha.red::before, #board .ficha.red::after {
+    background-color: #f44336;
+}
+
+.pink, #board .ficha.pink::before, #board .ficha.pink::after {
+    background-color: #e91e63;
+}
+
+.purple, #board .ficha.purple::before, #board .ficha.purple::after {
+    background-color: #9c27b0;
+}
+
+.deepPurple, #board .ficha.deepPurple::before, #board .ficha.deepPurple::after {
+    background-color: #673ab7;
+}
+
+.indigo, #board .ficha.indigo::before, #board .ficha.indigo::after {
+    background-color: #3f51b5;
+}
+
+.blue, #board .ficha.blue::before, #board .ficha.blue::after {
+    background-color: #2196f3;
+}
+
+.lightBlue, #board .ficha.lightBlue::before, #board .ficha.lightBlue::after {
+    background-color: #03a9f4;
+}
+
+.cyan, #board .ficha.cyan::before, #board .ficha.cyan::after {
+    background-color: #00bcd4;
+}
+
+.teal, #board .ficha.teal::before, #board .ficha.teal::after {
+    background-color: #009688;
+}
+
+.green, #board .ficha.green::before, #board .ficha.green::after {
+    background-color: #4caf50;
+}
+
+.lightGreen, #board .ficha.lightGreen::before, #board .ficha.lightGreen::after {
+    background-color: #8bc34a;
+}
+
+.lime, #board .ficha.lime::before, #board .ficha.lime::after {
+    background-color: #cddc39;
+}
+
+.yellow, #board .ficha.yellow::before, #board .ficha.yellow::after {
+    background-color: #ffeb3b;
+}
+
+.amber, #board .ficha.amber::before, #board .ficha.amber::after {
+    background-color: #ffc107;
+}
+
+.orange, #board .ficha.orange::before, #board .ficha.orange::after {
+    background-color: #ff9800;
+}
+
+.deepOrange, #board .ficha.deepOrange::before, #board .ficha.deepOrange::after {
+    background-color: #ff5722;
+}
+
+.brown, #board .ficha.brown::before, #board .ficha.brown::after {
+    background-color: #795548;
+}
+
+.grey, #board .ficha.grey::before, #board .ficha.grey::after {
+    background-color: #9e9e9e;
+}
+
+.blueGrey, #board .ficha.blueGrey::before, #board .ficha.blueGrey::after {
+    background-color: #607d8b;
+}
+
+/***** Control of labels and inputs */
+.button {
+  margin: 3px auto;
+  width: 100%;
+  padding: 7px;
+  border-radius: 3px;
+}
+
+input, label {
+  display: none;
+  user-select: none;
+}
+
+#board {
+  position: absolute;
+  overflow: visible;
+  width: 950px;
+  height: 600px;
+  background: url(../img/game_bg2.jpg);
+  background-size: cover;
+  border: 3px solid black;
+  left: 70px;
+  top: 10px;
+}
+#board .ficha {
+  position: absolute;
+  width: 6px;
+  height: 40px;
+  overflow: visible;
+  bottom: 0;
+  left: -30px;
+  transition: all 0.5s;
+  transform: translate(25px, -11px);
+  -webkit-transform: translate(25px, -11px);
+  border: 2px solid black;
+  z-index: 3;
+}
+#board .ficha::before, #board .ficha::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  border-radius: 100%;
+  border: 2px solid black;
+  box-sizing: border-box;
+  border-bottom: 0;
+}
+#board .ficha::before {
+  top: 30px;
+  width: 40px;
+  left: -17px;
+  border-bottom: 2px solid black;
+  border-top: 1px solid black;
+}
+
+/***** Piece position for each numbered tile. TODO: reduce using SCSS :P */
+#board > .ficha.position-0 {
+    left: 035px;
+    bottom: 062px;
+  }
+
+#board > .ficha.position-1 {
+  left: 170px;
+  bottom: 047px;
+}
+
+#board > .ficha.position-2 {
+  left: 247px;
+  bottom: 040px;
+}
+
+#board > .ficha.position-3 {
+  left: 327px;
+  bottom: 030px;
+}
+
+#board > .ficha.position-4 {
+  left: 410px;
+  bottom: 020px;
+}
+
+#board > .ficha.position-5 {
+  left: 485px;
+  bottom: 015px;
+}
+
+#board > .ficha.position-6 {
+  left: 570px;
+  bottom: 015px;
+}
+
+#board > .ficha.position-7 {
+  left: 647px;
+  bottom: 018px;
+}
+
+#board > .ficha.position-8 {
+  left: 727px;
+  bottom: 027px;
+}
+
+#board > .ficha.position-9 {
+  left: 800px;
+  bottom: 047px;
+}
+
+#board > .ficha.position-10 {
+  left: 845px;
+  bottom: 115px;
+}
+
+#board > .ficha.position-11 {
+  left: 778px;
+  bottom: 160px;
+}
+
+#board > .ficha.position-12 {
+  left: 698px;
+  bottom: 170px;
+}
+
+#board > .ficha.position-13 {
+  left: 620px;
+  bottom: 170px;
+}
+
+#board > .ficha.position-14 {
+  left: 540px;
+  bottom: 168px;
+}
+
+#board > .ficha.position-15 {
+  left: 462px;
+  bottom: 162px;
+}
+
+#board > .ficha.position-16 {
+  left: 382px;
+  bottom: 161px;
+}
+
+#board > .ficha.position-17 {
+  left: 300px;
+  bottom: 158px;
+}
+
+#board > .ficha.position-18 {
+  left: 220px;
+  bottom: 165px;
+}
+
+#board > .ficha.position-19 {
+  left: 145px;
+  bottom: 178px;
+}
+
+#board > .ficha.position-20 {
+  left: 090px;
+  bottom: 240px;
+}
+
+#board > .ficha.position-21 {
+  left: 168px;
+  bottom: 287px;
+}
+
+#board > .ficha.position-22 {
+  left: 240px;
+  bottom: 297px;
+}
+
+#board > .ficha.position-23 {
+  left: 320px;
+  bottom: 300px;
+}
+
+#board > .ficha.position-24 {
+  left: 399px;
+  bottom: 295px;
+}
+
+#board > .ficha.position-25 {
+  left: 477px;
+  bottom: 289px;
+}
+
+#board > .ficha.position-26 {
+  left: 558px;
+  bottom: 285px;
+}
+
+#board > .ficha.position-27 {
+  left: 640px;
+  bottom: 275px;
+}
+
+#board > .ficha.position-28 {
+  left: 720px;
+  bottom: 275px;
+}
+
+#board > .ficha.position-29 {
+  left: 800px;
+  bottom: 285px;
+}
+
+#board > .ficha.position-30 {
+  left: 845px;
+  bottom: 345px;
+}
+
+#board > .ficha.position-31 {
+  left: 785px;
+  bottom: 397px;
+}
+
+#board > .ficha.position-32 {
+  left: 708px;
+  bottom: 413px;
+}
+
+#board > .ficha.position-33 {
+  left: 628px;
+  bottom: 415px;
+}
+
+#board > .ficha.position-34 {
+  left: 550px;
+  bottom: 410px;
+}
+
+#board > .ficha.position-35 {
+  left: 468px;
+  bottom: 407px;
+}
+
+#board > .ficha.position-36 {
+  left: 387px;
+  bottom: 400px;
+}
+
+#board > .ficha.position-37 {
+  left: 309px;
+  bottom: 395px;
+}
+
+#board > .ficha.position-38 {
+  left: 232px;
+  bottom: 389px;
+}
+
+#board > .ficha.position-39 {
+  left: 152px;
+  bottom: 400px;
+}
+
+#board > .ficha.position-40 {
+  left: 072px;
+  bottom: 430px;
+}
+
+#board > .ficha.position-41 {
+  left: 092px;
+  bottom: 505px;
+}
+
+#board > .ficha.position-42 {
+  left: 172px;
+  bottom: 525px;
+}
+
+#board > .ficha.position-43 {
+  left: 242px;
+  bottom: 535px;
+}
+
+#board > .ficha.position-44 {
+  left: 328px;
+  bottom: 535px;
+}
+
+#board > .ficha.position-45 {
+  left: 410px;
+  bottom: 530px;
+}
+
+#board > .ficha.position-46 {
+  left: 490px;
+  bottom: 527px;
+}
+
+#board > .ficha.position-47 {
+  left: 565px;
+  bottom: 525px;
+}
+
+#board > .ficha.position-48 {
+  left: 649px;
+  bottom: 525px;
+}
+
+#board > .ficha.position-49 {
+  left: 728px;
+  bottom: 527px;
+}
+
+#board > .ficha.position-50 {
+  left: 808px;
+  bottom: 525px;
+}
