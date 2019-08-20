@@ -22,7 +22,7 @@ const color = [
 ];
 const ficha = [
     {
-        position: 0,
+        position: -1,
         point: 0,
         isFinish: false,
     }
@@ -51,16 +51,18 @@ dice_audio.onended = function() {
     $('#roll').attr('checked', false);
     $('#dice-result').text(dice_a + dice_b);
 
-    randomDiceAndMoveFiche(dice_a, dice_b);
-    // if(ficha[turn].position === 0) {
-    //     if((dice_a + dice_b) === 12) {
-    //         randomDiceAndMoveFiche(dice_a, dice_b);
-    //     }
-
-    //     $('#random-dice').attr('disabled', false);
-    // } else {
-    //     randomDiceAndMoveFiche(dice_a, dice_b);
-    // }
+    if(ficha[turn].position === -1) {
+        if((dice_a + dice_b) === 6) {
+            ficha[turn].position = 0;
+            updatePosition(ficha[turn]);
+            $('#random-dice').attr('disabled', false);
+        } else {
+            updateTurn(1);
+            $('#random-dice').attr('disabled', false);
+        }
+    } else {
+        randomDiceAndMoveFiche(dice_a, dice_b);
+    }
 }
 
 $('#random-dice').click(function() {
@@ -68,12 +70,12 @@ $('#random-dice').click(function() {
     $(this).attr('disabled', true);
     dice_audio.play();
     dice_a = Math.ceil(Math.random() * 6);
-    dice_b = Math.ceil(Math.random() * 6);
+    dice_b = 0;//Math.ceil(Math.random() * 6);
 });
 
 $('.add-player').click(function() {
     var player = {
-        position: 0,
+        position: -1,
         point: 0,
         isFinish: false,
     }
@@ -137,7 +139,7 @@ function randomDiceAndMoveFiche(a = 0, b = 0) {
             player_should_point = turn;
             openQuestionModal(ficha[turn]);
 
-            if(dice !== 12) {
+            if(dice !== 6) {
                 updateTurn(1);
             }
 
@@ -210,7 +212,7 @@ function rewindPosition(block = 0) {
 
             updatePosition(ficha[turn]);
 
-            if(dice !== 12) {
+            if(dice !== 6) {
                 updateTurn(1);
             }
 
@@ -262,6 +264,9 @@ function loadQuestion(callback) {
 }
 
 function openQuestionModal(player) {
+    if(player.position === 0) {
+        return;
+    }
     window.localStorage.setItem('opened_modal', '#question-modal');
     var number_question = window.localStorage.getItem('question_'+ player.position);
     if(!number_question) {
